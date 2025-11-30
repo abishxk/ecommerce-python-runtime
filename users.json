@@ -1,0 +1,32 @@
+[
+    {
+        "name": "abishek",
+        "email": "abi",
+        "password": "1",
+        "role": "CUSTOMER"
+    },
+    {
+        "name": "abiiii",
+        "email": "abishek",
+        "password": "1",
+        "role": "ORDER_TEAM"
+    },
+    {
+        "name": "abishekp",
+        "email": "p",
+        "password": "p",
+        "role": "PRODUCT_TEAM"
+    },
+    {
+        "name": "test",
+        "email": "test",
+        "password": "test",
+        "role": "CUSTOMER"
+    },
+    {
+        "name": "testtt",
+        "email": "testttt",
+        "password": "testtt",
+        "role": "CUSTOMER"
+    }
+]

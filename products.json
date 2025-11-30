@@ -1,0 +1,14 @@
+[
+    {
+        "name": "iphone 17",
+        "price": 149999.0,
+        "quantity": 9,
+        "type": "mobile phone"
+    },
+    {
+        "name": "Asus laptop",
+        "price": 80000.0,
+        "quantity": 10,
+        "type": "laptop"
+    }
+]

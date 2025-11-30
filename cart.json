@@ -1,0 +1,14 @@
+[
+    {
+        "email": "abi",
+        "cart": [
+            {
+                "name": "iphone 17",
+                "price": 149999.0,
+                "quantity": 1,
+                "type": "mobile phone"
+            }
+        ]
+    }
+]
+
