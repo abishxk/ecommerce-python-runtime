@@ -159,14 +159,16 @@ def quantity(q):
     elif qty <= q:
         return qty
     else:
-        print("Input greater than available quantity... Try again :(")
-        quantity(q)
+        return 0
 
 def add_to_cart(chosen_product):
     print("*****************************************************")
     print(f"{'NAME':<15}{'PRICE':<10}{'QTY':<10}")
     print(f"{chosen_product['name']:<15}{chosen_product['price']:<10}{chosen_product['quantity']:<10}")
     qty = quantity(chosen_product['quantity'])
+    if qty == 0:
+        print("Input greater than available quantity... Try again :(")
+        qty = quantity(chosen_product['quantity'])
     filename = "cart.json"
 
     temp_prod = chosen_product
@@ -235,25 +237,36 @@ def view_cart():
     else:
         carts = []
 
-    if carts:
-        grand_total = 0
-        for i in carts:
+    user_found = False
+
+    for entry in carts:
+        if entry["email"] == s.logged_in_user:
+            user_found = True
+            grand_total = 0
+
             print(f"{'NAME':<15}{'PRICE':<10}{'QTY':<10}{'TOTAL'}")
-            for item in i['cart']:
+
+            for item in entry['cart']:
                 total = item['price'] * item['quantity']
                 grand_total += total
                 print(f"{item['name']:<15}{item['price']:<10}{item['quantity']:<10}{total}")
+
             print("-----------------------------------------")
             print(f"{'GRAND TOTAL':<35}{grand_total}")
-        print('''
-        1 - Proceed to check out
-        2 - Back
-        ''')
-        n = int(input("> "))
-        if n == 1:
-            print("check out page")
-        else:
-            customer_menu()
-    else:
-        print("cart is empty...")
-        customer_menu()
+
+            print('''
+            1 - Proceed to check out
+            2 - Back
+            ''')
+            n = int(input("> "))
+
+            if n == 1:
+                print("check out page")
+            else:
+                return customer_menu()
+
+
+    if not user_found:
+        print("Cart is empty...")
+        return customer_menu()
+

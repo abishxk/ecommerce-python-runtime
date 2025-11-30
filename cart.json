@@ -49,6 +49,64 @@
                 "price": 149999.0,
                 "quantity": 1,
                 "type": "mobile phone"
+            },
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 2,
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "email": "shree",
+        "cart": [
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 1,
+                "type": "mobile"
+            },
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 1,
+                "type": "mobile"
+            },
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 1,
+                "type": "mobile"
+            },
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 1,
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "email": "check",
+        "cart": [
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 1,
+                "type": "mobile"
+            },
+            {
+                "name": "Asus laptop",
+                "price": 80000.0,
+                "quantity": 2,
+                "type": "laptop"
+            },
+            {
+                "name": "Asus laptop",
+                "price": 80000.0,
+                "quantity": 2,
+                "type": "laptop"
             }
         ]
     }

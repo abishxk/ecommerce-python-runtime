@@ -40,5 +40,23 @@
         "email": "check",
         "password": "check",
         "role": "CUSTOMER"
+    },
+    {
+        "name": "shree",
+        "email": "shree",
+        "password": "1",
+        "role": "CUSTOMER"
+    },
+    {
+        "name": "check",
+        "email": "check",
+        "password": "check",
+        "role": "CUSTOMER"
+    },
+    {
+        "name": "new",
+        "email": "new",
+        "password": "new",
+        "role": "CUSTOMER"
     }
 ]
