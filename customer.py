@@ -108,21 +108,25 @@ def choose_product(prodsidx,x):
 
 def prod_search():
     print("*****************************************************")
+
+    filename = "products.json"
+    if os.path.exists(filename):
+        with open(filename, "r") as f:
+            try:
+                products = json.load(f)
+            except json.JSONDecodeError:
+                products = []
+    else:
+        products = []
+
+    if not products:
+        print("No products to search...")
+        return customer_menu()
+
     name = input("Enter a product name to search (or press 'ENTER' to go back) : ")
     if name == "":
         return customer_menu()
     else:
-        filename = "products.json"
-
-        # Load existing data
-        if os.path.exists(filename):
-            with open(filename, "r") as f:
-                try:
-                    products = json.load(f)
-                except json.JSONDecodeError:
-                    products = []
-        else:
-            products = []
         result = []
         resultidx = []
         y = 1
@@ -135,7 +139,7 @@ def prod_search():
 
         if not result:
             print("No matching products found!")
-            prod_search()
+            return prod_search()
         else:
             print(f"{'S.NO':<10}{'NAME':<15}{'PRICE':<10}{'QTY':<10}{'TYPE':<15}")
             for prod, idx in zip(result, resultidx):
@@ -143,20 +147,20 @@ def prod_search():
             print("*********************************************************************")
             z = choose_product(resultidx, y)
             if z == 0:
-                customer_menu()
+                return customer_menu()
             else:
                 chosen_product = result[z - 1]
-                print(f"\n****** you chose : {result[z - 1]['name']} ******\n")
+                print(f"\n****** you chose : {chosen_product['name']} ******\n")
                 add_to_cart(chosen_product)
 
-def quantity(q):
+def quantity(available):
     print("*****************************************************")
     print('''Enter quantity of the product : 
     (or 0 to go back)''')
     qty = int(input("> "))
     if qty == 0:
         return shop()
-    elif qty <= q:
+    elif qty <= available:
         return qty
     else:
         return 0
@@ -169,6 +173,7 @@ def add_to_cart(chosen_product):
     if qty == 0:
         print("Input greater than available quantity... Try again :(")
         qty = quantity(chosen_product['quantity'])
+
     filename = "cart.json"
 
     temp_prod = chosen_product
@@ -187,15 +192,14 @@ def add_to_cart(chosen_product):
 
     user_exists = False
 
-    for i in carts:
-        if i["email"] == email :
-            i["cart"].append(temp_prod)
+    for cart in carts:
+        if cart["email"] == email:
+            cart["cart"].append(temp_prod)
             user_exists = True
             break
-        else:
-            continue
+
     if not user_exists:
-        carts .append({
+        carts.append({
             "email" : email,
             "cart" : [temp_prod]
         })
@@ -239,17 +243,17 @@ def view_cart():
 
     user_found = False
 
-    for entry in carts:
-        if entry["email"] == s.logged_in_user:
+    for user_cart in carts:
+        if user_cart["email"] == s.logged_in_user:
             user_found = True
             grand_total = 0
 
             print(f"{'NAME':<15}{'PRICE':<10}{'QTY':<10}{'TOTAL'}")
 
-            for item in entry['cart']:
-                total = item['price'] * item['quantity']
+            for prod in user_cart['cart']:
+                total = prod['price'] * prod['quantity']
                 grand_total += total
-                print(f"{item['name']:<15}{item['price']:<10}{item['quantity']:<10}{total}")
+                print(f"{prod['name']:<15}{prod['price']:<10}{prod['quantity']:<10}{total}")
 
             print("-----------------------------------------")
             print(f"{'GRAND TOTAL':<35}{grand_total}")

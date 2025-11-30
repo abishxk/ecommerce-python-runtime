@@ -63,12 +63,12 @@ def login():
     else:
         return
 
-    for c in users:
-        if c["email"] == mail and c["password"] == password:
+    for user in users:
+        if user["email"] == mail and user["password"] == password:
             print("\n*** Login successful! ***\n")
             s.logged_in_user = mail
 
-            role = c["role"]
+            role = user["role"]
             if role == "CUSTOMER":
                 cu.customer_menu()
             elif role == "PRODUCT_TEAM":
