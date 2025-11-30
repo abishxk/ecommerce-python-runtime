@@ -2,13 +2,19 @@
     {
         "name": "iphone 17",
         "price": 149999.0,
-        "quantity": 9,
+        "quantity": 6,
         "type": "mobile phone"
     },
     {
         "name": "Asus laptop",
         "price": 80000.0,
-        "quantity": 10,
+        "quantity": 9,
         "type": "laptop"
+    },
+    {
+        "name": "iphone 13",
+        "price": 69000.0,
+        "quantity": 14,
+        "type": "mobile"
     }
 ]

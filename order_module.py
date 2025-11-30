@@ -1,5 +1,4 @@
 import json
-import ecom as ec
 import os
 
 def order_module_signup():

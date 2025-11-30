@@ -1,5 +1,4 @@
 import json
-import ecom as ec
 import os
 
 def product_team_signup():
@@ -70,9 +69,11 @@ def add_product():
 def product_team_menu():
     print("*****************************************************")
     print('''
-            ******Product Team Menu******
-            1 - Add Product
-            ''')
+        ******Product Team Menu******
+        1 - Add Product
+        2 - Update Product
+        3 - Remove Product
+        ''')
     n = int(input())
     if n == 1:
         add_product()

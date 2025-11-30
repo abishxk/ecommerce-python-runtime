@@ -7,8 +7,49 @@
                 "price": 149999.0,
                 "quantity": 1,
                 "type": "mobile phone"
+            },
+            {
+                "name": "iphone 17",
+                "price": 149999.0,
+                "quantity": 1,
+                "type": "mobile phone"
+            },
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 3,
+                "type": "mobile"
+            },
+            {
+                "name": "iphone 17",
+                "price": 149999.0,
+                "quantity": 1,
+                "type": "mobile phone"
+            },
+            {
+                "name": "Asus laptop",
+                "price": 80000.0,
+                "quantity": 1,
+                "type": "laptop"
+            },
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 2,
+                "type": "mobile"
+            },
+            {
+                "name": "iphone 13",
+                "price": 69000.0,
+                "quantity": 1,
+                "type": "mobile"
+            },
+            {
+                "name": "iphone 17",
+                "price": 149999.0,
+                "quantity": 1,
+                "type": "mobile phone"
             }
         ]
     }
 ]
-

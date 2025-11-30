@@ -28,5 +28,17 @@
         "email": "testttt",
         "password": "testtt",
         "role": "CUSTOMER"
+    },
+    {
+        "name": "prod",
+        "email": "prod",
+        "password": "prod",
+        "role": "PRODUCT_TEAM"
+    },
+    {
+        "name": "check",
+        "email": "check",
+        "password": "check",
+        "role": "CUSTOMER"
     }
 ]
