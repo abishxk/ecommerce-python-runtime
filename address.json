@@ -1,0 +1,30 @@
+[
+    {
+        "email": "shree",
+        "address": [
+            {
+                "name": "abishek",
+                "first_line": "23",
+                "second_line": "adad",
+                "city": "afad",
+                "pincode": "adad",
+                "state": "adadd",
+                "country": "fsfsf"
+            }
+        ]
+    },
+    {
+        "email": "abi",
+        "address": [
+            {
+                "name": "shree",
+                "first_line": "ad",
+                "second_line": "dfsf",
+                "city": "sfsdada",
+                "pincode": "adfdf",
+                "state": "adsda",
+                "country": "adad"
+            }
+        ]
+    }
+]

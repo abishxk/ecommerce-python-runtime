@@ -249,8 +249,9 @@ def view_cart():
             grand_total = 0
 
             print(f"{'NAME':<15}{'PRICE':<10}{'QTY':<10}{'TOTAL'}")
-
+            current_user_cart = user_cart['cart']
             for prod in user_cart['cart']:
+
                 total = prod['price'] * prod['quantity']
                 grand_total += total
                 print(f"{prod['name']:<15}{prod['price']:<10}{prod['quantity']:<10}{total}")
@@ -265,7 +266,7 @@ def view_cart():
             n = int(input("> "))
 
             if n == 1:
-                print("check out page")
+                checkout(current_user_cart)
             else:
                 return customer_menu()
 
@@ -274,3 +275,139 @@ def view_cart():
         print("Cart is empty...")
         return customer_menu()
 
+def checkout(cart):
+    filename = "products.json"
+    if os.path.exists(filename):
+        with open(filename, "r") as f:
+            try:
+                products = json.load(f)
+            except json.JSONDecodeError:
+                products = []
+    else:
+        products = []
+    c = 0
+    for product in products:
+        for prod in cart:
+            if product["name"] == prod["name"]:
+                if product["quantity"] >= prod["quantity"]:
+                    c += 1
+    if c == len(cart):
+        chosen_address = select_address()
+        print(chosen_address)
+    else:
+        print("Some items in the cart are not available...")
+
+
+def select_address():
+    filename = "address.json"
+    if os.path.exists(filename):
+        with open(filename, "r") as f:
+            try:
+                addresses = json.load(f)
+            except json.JSONDecodeError:
+                addresses = []
+    else:
+        addresses = []
+
+    addressidx = []
+    user_address = []
+    x = 1
+    email = s.logged_in_user
+    for address in addresses:
+        if email == address["email"]:
+            for i in address["address"]:
+                addressidx.append(x)
+                user_address.append(i)
+                x += 1
+    if user_address:
+        for address in user_address:
+            print(f"""
+            ------------------------------------------------------------
+            ADDRESS #{x}
+            Name       : {address['name']}
+            Address    : {address['first_line']}
+                         {address['second_line']}
+            City       : {address['city']}
+            Pincode    : {address['pincode']}
+            State      : {address['state']}
+            Country    : {address['country']}
+            ------------------------------------------------------------
+            """)
+        idx = choose_address(addressidx, x)
+        if idx == 0:
+            return view_cart()
+        else:
+            chosen_address = user_address[idx - 1]
+            print(f"""
+            ------------------------------------------------------------
+            YOU CHOSE
+            Name       : {chosen_address['name']}
+            Address    : {chosen_address['first_line']}
+                         {chosen_address['second_line']}
+            City       : {chosen_address['city']}
+            Pincode    : {chosen_address['pincode']}
+            State      : {chosen_address['state']}
+            Country    : {chosen_address['country']}
+            ------------------------------------------------------------
+            """)
+            return chosen_address
+
+
+    else:
+        temp_address = enter_address()
+        email = s.logged_in_user
+        addresses.append({
+            "email": email,
+            "address": [temp_address]
+        })
+        with open(filename, "w") as f:
+            json.dump(addresses, f, indent=4)
+        return temp_address
+
+
+def enter_address():
+    temp_address = {"name": input("Enter name of Receiver :"),
+                    "first_line": input("Enter Door number and Building name :"),
+                    "second_line": input("Enter Street name and Area name :"),
+                    "city": input("Enter name of the City :"), "pincode": input("Enter pincode :"),
+                    "state": input("Enter name of the State :"), "country": input("Enter name of the Country :")}
+
+    print(f"""
+    ------------------------------------------------------------
+    PLEASE CONFIRM YOUR ADDRESS
+    Name       : {temp_address['name']}
+    Address    : {temp_address['first_line']}
+                 {temp_address['second_line']}
+    City       : {temp_address['city']}
+    Pincode    : {temp_address['pincode']}
+    State      : {temp_address['state']}
+    Country    : {temp_address['country']}
+    ------------------------------------------------------------
+    """)
+
+    print('''
+            1 - yes
+            2 - Enter address again
+                ''')
+    while True:
+        n = int(input())
+        if n == 1:
+            break
+        elif n == 2:
+            enter_address()
+        else:
+            print("Invalid input... Try again :(")
+    return temp_address
+
+
+def choose_address(addressidx,x):
+    print(f'''Enter serial number(S.NO) of the address
+    (or {x} to go back): ''')
+    ch = int(input("> "))
+    if ch in addressidx:
+        return ch
+    elif ch == x:
+        return 0
+    else:
+        print("Address with given serial number doesnt exist... Try again :(")
+        choose_address(addressidx,x)
