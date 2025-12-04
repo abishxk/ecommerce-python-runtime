@@ -1,0 +1,64 @@
+[
+    {
+        "email": "shree",
+        "order_details": [
+            {
+                "email": "shree",
+                "cart": [
+                    {
+                        "name": "Asus laptop",
+                        "price": 80000.0,
+                        "quantity": 2,
+                        "type": "laptop"
+                    }
+                ],
+                "address": {
+                    "name": "abishek",
+                    "first_line": "23",
+                    "second_line": "adad",
+                    "city": "afad",
+                    "pincode": "adad",
+                    "state": "adadd",
+                    "country": "fsfsf",
+                    "phone": "986557656"
+                },
+                "date_placed": "2025-12-04",
+                "delivery_date": "2025-12-06",
+                "payment_method": "CASH ON DELIVERY",
+                "order_total": 160000.0,
+                "status": "Order Placed"
+            }
+        ]
+    },
+    {
+        "email": "abi",
+        "order_details": [
+            {
+                "email": "abi",
+                "cart": [
+                    {
+                        "name": "iphone 17",
+                        "price": 149999.0,
+                        "quantity": 3,
+                        "type": "mobile phone"
+                    }
+                ],
+                "address": {
+                    "name": "shree",
+                    "first_line": "adad",
+                    "second_line": "dadada",
+                    "city": "dada",
+                    "pincode": "dada",
+                    "state": "dada",
+                    "country": "dad",
+                    "phone": "986557656"
+                },
+                "date_placed": "2025-12-04",
+                "delivery_date": "2025-12-08",
+                "payment_method": "SCANNER",
+                "order_total": 449997.0,
+                "status": "Order Placed"
+            }
+        ]
+    }
+]
