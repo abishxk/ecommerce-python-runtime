@@ -27,6 +27,38 @@
                 "payment_method": "CASH ON DELIVERY",
                 "order_total": 160000.0,
                 "status": "Order Placed"
+            },
+            {
+                "email": "shree",
+                "cart": [
+                    {
+                        "name": "Asus laptop",
+                        "price": 80000.0,
+                        "quantity": 1,
+                        "type": "laptop"
+                    },
+                    {
+                        "name": "iphone 13",
+                        "price": 69000.0,
+                        "quantity": 1,
+                        "type": "mobile"
+                    }
+                ],
+                "address": {
+                    "name": "adad",
+                    "first_line": "adada",
+                    "second_line": "dada",
+                    "city": "dada",
+                    "pincode": "dada",
+                    "state": "adad",
+                    "country": "adada",
+                    "phone": "adad"
+                },
+                "date_placed": "2025-12-04",
+                "delivery_date": "2025-12-06",
+                "payment_method": "CASH ON DELIVERY",
+                "order_total": 149000.0,
+                "status": "Order Placed"
             }
         ]
     },

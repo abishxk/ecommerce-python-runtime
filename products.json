@@ -8,13 +8,13 @@
     {
         "name": "Asus laptop",
         "price": 80000.0,
-        "quantity": 18,
+        "quantity": 17,
         "type": "laptop"
     },
     {
         "name": "iphone 13",
         "price": 69000.0,
-        "quantity": 16,
+        "quantity": 15,
         "type": "mobile"
     }
 ]

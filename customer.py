@@ -55,6 +55,8 @@ def customer_menu():
         prod_search()
     elif n == 3:
         view_cart()
+    elif n == 4:
+        view_order_status()
     elif n == 5:
         return
     else:
@@ -84,29 +86,30 @@ def shop():
             prodsidx.append(x)
             x += 1
         print("*****************************************************")
-        z = choose_product(prodsidx,x)
+        z = choose_product(prodsidx)
         if z == 0:
             return customer_menu()
         else:
-            chosen_product = products[z - 1]
-            print(f"\n****** you chose : {products[z - 1]['name']} ******\n")
+            chosen_product = products[z]
+            print(f"\n****** you chose : {products[z]['name']} ******\n")
             add_to_cart(chosen_product)
 
 
     else:
         print("No products available at the moment...")
 
-def choose_product(prodsidx,x):
+def choose_product(prodsidx):
+    print("*****************************************************")
     print(f'''Enter serial number(S.NO) of the product
-    (or {x} to go back): ''')
+    (or 0 to go back): ''')
     ch = int(input("> "))
     if ch in prodsidx:
-        return ch
-    elif ch == x:
+        return ch -1
+    elif ch == 0:
         return 0
     else:
         print("Product with given serial number doesnt exist... Try again :(")
-        choose_product(prodsidx,x)
+        choose_product(prodsidx)
 
 def prod_search():
     print("*****************************************************")
@@ -147,11 +150,11 @@ def prod_search():
             for prod, idx in zip(result, resultidx):
                 print(f"{idx:<10}{prod['name']:<15}{prod['price']:<10}{prod['quantity']:<10}{prod['type']:<15}")
             print("*********************************************************************")
-            z = choose_product(resultidx, y)
+            z = choose_product(resultidx)
             if z == 0:
                 return customer_menu()
             else:
-                chosen_product = result[z - 1]
+                chosen_product = result[z]
                 print(f"\n****** you chose : {chosen_product['name']} ******\n")
                 add_to_cart(chosen_product)
 
@@ -239,7 +242,6 @@ def add_to_cart(chosen_product):
 
 
 def view_cart():
-    print("*****************************************************")
     filename = "cart.json"
 
     if os.path.exists(filename):
@@ -257,6 +259,7 @@ def view_cart():
             user_found = True
             grand_total = 0
             if user_cart["cart"]:
+                print("-----------------------------------------")
                 print(f"{'NAME':<15}{'PRICE':<10}{'QTY':<10}{'TOTAL'}")
                 current_user_cart = user_cart['cart']
                 for prod in user_cart['cart']:
@@ -288,6 +291,7 @@ def view_cart():
         return customer_menu()
 
 def checkout(cart):
+    print("*****************************************************")
     filename = "products.json"
     if os.path.exists(filename):
         with open(filename, "r") as f:
@@ -353,6 +357,7 @@ def select_address():
         enter_address()
 
 def enter_address():
+    print("*****************************************************")
     filename = "address.json"
     if os.path.exists(filename):
         with open(filename, "r") as f:
@@ -414,6 +419,7 @@ def enter_address():
 
 
 def choose_address(user_address,addressidx,x):
+    print("*****************************************************")
     print(f'''\tEnter serial number of the address to select it
     or Enter {x} to Enter a new address
     (or 0 to go back): ''')
@@ -456,7 +462,7 @@ def choose_address(user_address,addressidx,x):
         return choose_address(user_address, addressidx, x)
 
 def place_order(chosen_address):
-
+    print("*****************************************************")
     filename = "cart.json"
 
     if os.path.exists(filename):
@@ -539,6 +545,7 @@ def place_order(chosen_address):
         return view_cart()
 
 def make_payment(grand_total):
+    print("*****************************************************")
     payment_modes = ["CASH ON DELIVERY", "SCANNER", "UPI", "CARD"]
     print(f"***** Your Order Total is {grand_total}")
     paymentidx = []
@@ -572,6 +579,7 @@ def make_payment(grand_total):
 
 
 def choose_payment_method(paymentidx):
+    print("*****************************************************")
     m = int(input("""
     Choose a Payment Method
     (or 0 to cancel)
@@ -585,6 +593,7 @@ def choose_payment_method(paymentidx):
         choose_payment_method(paymentidx)
 
 def choose_date(datesidx):
+    print("*****************************************************")
     m = int(input("""
         > """))
     if m in datesidx:
@@ -620,4 +629,54 @@ def perform_updates(order_details):
         return True
     else:
         return False
+
+def view_order_status():
+    print("*****************************************************")
+    filename = "orders.json"
+    if os.path.exists(filename):
+        with open(filename,"r") as f:
+            try:
+                orders = json.load(f)
+            except json.JSONDecodeError:
+                print("Unable view orders at the moment...")
+                return customer_menu()
+    else:
+        orders = []
+    if orders:
+        found = False
+        for order in orders:
+            if order["email"] == s.logged_in_user:
+                found = True
+                print("*****************************************************")
+                print("                 YOUR ORDERS")
+                print("*****************************************************")
+                order_details = order["order_details"]
+                for od in order_details:
+                    print("-----------------------------------------------------")
+                    print("Order Details:")
+                    print(f"Date Placed     : {od['date_placed']}")
+                    print(f"Delivery Date   : {od['delivery_date']}")
+                    print(f"Payment Method  : {od['payment_method']}")
+                    print(f"Status          : {od['status']}")
+                    print("-----------------------------------------------------")
+
+                    print(f"{'PRODUCT':<15}{'QTY':<10}{'PRICE':<10}{'TOTAL'}")
+                    for item in od["cart"]:
+                        total = item["price"] * item["quantity"]
+                        print(f"{item['name']:<15}{item['quantity']:<10}{item['price']:<10}{total}")
+
+                    print("-----------------------------------------------------")
+                    print(f"ORDER TOTAL     : {od['order_total']}")
+                    print("-----------------------------------------------------\n")
+                return customer_menu()
+
+        if not found:
+            print("You haven't placed any Orders yet :(")
+            return customer_menu()
+
+    else:
+        print("You haven't placed any Orders yet :(")
+        return customer_menu()
+
+
 

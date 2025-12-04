@@ -10,7 +10,7 @@
                 "pincode": "adad",
                 "state": "adadd",
                 "country": "fsfsf",
-                "phone" : "986557656"
+                "phone": "986557656"
             },
             {
                 "name": "shree",
@@ -20,7 +20,17 @@
                 "pincode": "dada",
                 "state": "adad",
                 "country": "adada",
-                "phone" : "986557656"
+                "phone": "986557656"
+            },
+            {
+                "name": "adad",
+                "first_line": "adada",
+                "second_line": "dada",
+                "city": "dada",
+                "pincode": "dada",
+                "state": "adad",
+                "country": "adada",
+                "phone": "adad"
             }
         ]
     },
@@ -35,7 +45,7 @@
                 "pincode": "adfdf",
                 "state": "adsda",
                 "country": "adad",
-                "phone" : "986557656"
+                "phone": "986557656"
             },
             {
                 "name": "shree",
@@ -45,7 +55,7 @@
                 "pincode": "dada",
                 "state": "dada",
                 "country": "dad",
-                "phone" : "986557656"
+                "phone": "986557656"
             }
         ]
     }

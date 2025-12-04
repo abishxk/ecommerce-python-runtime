@@ -85,6 +85,6 @@ def login():
 if __name__ == "__main__":
     welcome()
     print("*****************************************************")
-    print("Thank you for using cheee shop... :)")
+    print("Thank you for choosing cheee shop... :)")
 
 
